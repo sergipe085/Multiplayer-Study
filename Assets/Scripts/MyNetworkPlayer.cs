@@ -6,7 +6,10 @@ using TMPro;
 
 public class MyNetworkPlayer : NetworkBehaviour
 {
-    [SyncVar]
+    [SerializeField] private TMP_Text nameText = null;
+    [SerializeField] private Renderer renderer = null;
+
+    [SyncVar(hook=nameof(HandleNameUpdated))]
     [SerializeField]
     private string name = "None";
 
@@ -15,7 +18,11 @@ public class MyNetworkPlayer : NetworkBehaviour
         name = _name;
     }
 
-    [SyncVar]
+    private void HandleNameUpdated(string oldName, string newName) {
+        nameText.text = newName;
+    }
+
+    [SyncVar(hook=nameof(HandleColorUpdated))]
     [SerializeField]
     private Color color = Color.white;
 
@@ -23,5 +30,9 @@ public class MyNetworkPlayer : NetworkBehaviour
     public void SetColor(Color _color) {
         color = _color;
         GetComponentInChildren<MeshRenderer>().material.color = color;
+    }
+
+    private void HandleColorUpdated(Color oldColor, Color newColor) {
+        renderer.material.color = newColor;
     }
 }

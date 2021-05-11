@@ -257,6 +257,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  nameText: {fileID: 5786619568785086669}
+  renderer: {fileID: 4447733231393825011}
   name: None
   color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &6373055487196419257
